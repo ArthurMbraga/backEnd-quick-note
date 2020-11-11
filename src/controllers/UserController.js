@@ -1,40 +1,14 @@
 const UserModel = require("../models/UserModel");
-
-const familiaPera = [
-  {
-    id: 0,
-    name: "Arthur Braga",
-  },
-  {
-    id: 1,
-    name: "Arthur Lima",
-  },
-  {
-    id: 2,
-    name: "Maria",
-  },
-  {
-    id: 3,
-    name: "Gabriel Andrade",
-  },
-  {
-    id: 4,
-    name: "Gabriel Junqueira",
-  },
-  {
-    id: 5,
-    name: "Paloma",
-  },
-  {
-    id: 6,
-    name: "Diogo",
-  },
-];
-
+const Firebase = require("../utils/Firebase");
 module.exports = {
   async create(request, response) {
     try {
       const user = request.body;
+
+      const uid = await Firebase.createNewUser(user.email, user.password);
+
+      delete user.password;
+      user.firebase_id = uid;
 
       const result = await UserModel.create(user);
       return response.status(200).json({ user_id: result });

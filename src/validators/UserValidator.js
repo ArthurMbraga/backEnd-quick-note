@@ -1,11 +1,11 @@
 const { celebrate, Segments, Joi } = require("celebrate");
 
 module.exports = {
-  
   create: celebrate({
     [Segments.BODY]: Joi.object().keys({
-      name: Joi.string(),
-      email: Joi.string(),
+      name: Joi.string().required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().min(6).required(),
     }),
   }),
 
@@ -22,9 +22,9 @@ module.exports = {
     [Segments.BODY]: Joi.object().keys({
       name: Joi.string().optional(),
       email: Joi.string().optional(),
-    }),    
+    }),
   }),
-  
+
   delete: celebrate({
     [Segments.PARAMS]: Joi.object().keys({
       user_id: Joi.string().required(),
