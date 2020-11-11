@@ -18,9 +18,11 @@
   },
   "homepage": "https://github.com/ArthurMbraga/backEnd-quick-note#readme",
   "dependencies": {
+    "celebrate": "^13.0.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "knex": "^0.21.6",
+    "lodash": "^4.17.20",
     "nodemon": "^2.0.6",
     "sqlite3": "^5.0.0",
     "uuid": "^8.3.1"
