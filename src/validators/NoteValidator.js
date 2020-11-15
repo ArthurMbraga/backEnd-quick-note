@@ -3,10 +3,14 @@ const { celebrate, Segments, Joi } = require("celebrate");
 module.exports = {
   create: celebrate({
     [Segments.BODY]: Joi.object().keys({
-      user_id: Joi.string().required(),
       title: Joi.string().required(),
       description: Joi.string().required(),
     }),
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
   }),
   getByUser: celebrate({
     [Segments.PARAMS]: Joi.object().keys({

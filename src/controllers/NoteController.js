@@ -3,7 +3,10 @@ const NoteModel = require("../models/NoteModel");
 module.exports = {
   async create(request, response) {
     try {
+      const { user_id } = request.session.user;
       const newNote = request.body;
+      newNote.user_id = user_id;
+
       const result = await NoteModel.create(newNote);
 
       return response.status(200).json({ note_id: result });
