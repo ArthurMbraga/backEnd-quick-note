@@ -13,6 +13,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 module.exports = {
+  
   async createNewUser(email, password) {
     const result = await firebase
       .auth()

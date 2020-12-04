@@ -50,6 +50,13 @@ routes.post(
 );
 
 routes.get(
+  "/note",
+  NoteValidator.getAll,
+  auth.authenticateToken,
+  NoteController.getAll
+);
+
+routes.get(
   "/note/:user_id",
   NoteValidator.getByUser,
   auth.authenticateToken,

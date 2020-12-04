@@ -21,6 +21,12 @@ module.exports = {
     return result;
   },
 
+  async getAll(user_id) {
+    const result = await connection("note").where({ user_id }).select("*");
+
+    return result;
+  },
+
   async getByUserWithFilters(user_id, { categoryName }) {
     const filter = { "note.user_id": user_id };
 
@@ -36,7 +42,6 @@ module.exports = {
       .where(filter)
       .distinct("note.note_id")
       .select("note.*");
-
 
     const notes_id = notas.map((note) => note.note_id);
     notas = _.groupBy(notas, "note_id");

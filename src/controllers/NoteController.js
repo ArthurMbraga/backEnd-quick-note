@@ -77,4 +77,20 @@ module.exports = {
       });
     }
   },
+
+  async getAll(request, response) {
+    try {
+      const { user_id } = request.session.user;
+
+      const result = await NoteModel.getAll(user_id);
+
+      return response.status(200).json(result);
+    } catch (error) {
+      console.warn("Note getAll failed:", error);
+
+      return response.status(500).json({
+        notification: "Internal server error while trying to get Notes",
+      });
+    }
+  },
 };

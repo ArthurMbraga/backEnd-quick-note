@@ -12,6 +12,13 @@ module.exports = {
       })
       .unknown(),
   }),
+  getAll: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
+  }),
   getByUser: celebrate({
     [Segments.PARAMS]: Joi.object().keys({
       user_id: Joi.string().required(),
